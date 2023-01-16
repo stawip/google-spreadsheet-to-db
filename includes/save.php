@@ -55,7 +55,9 @@ function exist_sheet( $sheets_list, $sheet_name ) {
  */
 function get_client() {
 	$client_secret = ( defined( 'GOOGLE_SS2DB_CLIENT_SECRET_PATH' ) ) ? GOOGLE_SS2DB_CLIENT_SECRET_PATH : '';
-	putenv( 'GOOGLE_APPLICATION_CREDENTIALS=' . $client_secret );
+	if(!is_array($client_secret)){
+    	putenv( 'GOOGLE_APPLICATION_CREDENTIALS=' . $client_secret );
+    }
 
 	$client = new Google_Client();
 	$client->setApplicationName( 'Google Sheets API PHP Quickstart' );
